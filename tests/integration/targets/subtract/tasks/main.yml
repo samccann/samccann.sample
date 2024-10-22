@@ -1,0 +1,50 @@
+- name: subtrahend is zero
+  register: result
+  ignore_errors: true
+  samccann.sample.subtract:
+    minuend: 4
+    subtrahend: 0
+
+- name: Assert the result
+  ansible.builtin.assert:
+    that:
+      - result is failed
+      - result.msg == "Subtraction by zero or a negative number is not allowed!"
+
+- name: subtrahend is negative
+  register: result
+  ignore_errors: true
+  samccann.sample.subtract:
+    minuend: 4
+    subtrahend: -2
+
+- name: Assert the result
+  ansible.builtin.assert:
+    that:
+      - result is failed
+      - result.msg == "Subtraction by zero or a negative number is not allowed!"
+
+- name: Difference is negative
+  register: result
+  ignore_errors: true
+  samccann.sample.subtract:
+    minuend: 4
+    subtrahend: 5
+
+- name: Assert the result
+  ansible.builtin.assert:
+    that:
+      - result is failed
+      - result.msg == "No negative results allowed!"
+
+- name: Subtract minuend by subtrahend
+  register: result
+  samccann.sample.subtract:
+    minuend: 10
+    subtrahend: 2
+
+- name: Assert the result
+  ansible.builtin.assert:
+    that:
+     - result is succeeded
+     - result.difference == 8

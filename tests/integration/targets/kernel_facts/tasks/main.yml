@@ -1,0 +1,12 @@
+- name: Get kernel details
+  register: result
+  ignore_errors: true
+  samccann.sample.kernel_facts:
+
+- name: check if task was successful
+  assert:
+    that:
+      - result is not changed
+      - result.ansible_facts is defined
+      - result.ansible_facts.kernel is defined
+

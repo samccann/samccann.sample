@@ -1,0 +1,24 @@
+- name: Divide by zero
+  register: result
+  ignore_errors: true
+  samccann.sample.divide:
+    dividend: 4
+    divisor: 0
+
+- name: Assert the result
+  ansible.builtin.assert:
+    that:
+      - result is failed
+      - result.msg == "Division by zero is not allowed!"
+
+- name: Divide a by b
+  register: result
+  samccann.sample.divide:
+    dividend: 4
+    divisor: 2
+
+- name: Assert the result
+  ansible.builtin.assert:
+    that:
+     - result is succeeded
+     - result.quotient == 2
