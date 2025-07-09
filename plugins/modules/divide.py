@@ -1,15 +1,18 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# GNU General Public License v3.0+
+# (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-from __future__ import (absolute_import, division, print_function)
+from __future__ import absolute_import, division, print_function
+
+
 __metaclass__ = type
 
 # What you define in this section will appear on Galaxy
 # and on docs.ansible.com as module documentation
 # if it gets included in the Ansible package.
-DOCUMENTATION = r'''
+DOCUMENTATION = r"""
 ---
 module: divide
 
@@ -35,9 +38,9 @@ options:
       - Divisor.
     type: int
     required: true
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 - name: Divide a by b
   register: result
   samccann.sample.divide:
@@ -47,26 +50,26 @@ EXAMPLES = r'''
 - name: Print the result
   ansible.builtin.debug:
     var: result.quotient
-'''
+"""
 
-RETURN = r'''
+RETURN = r"""
 quotient:
   description:
   - The result of division.
   returned: on success
   sample: 2
   type: int
-'''
+"""
 
-from ansible.module_utils.basic import AnsibleModule
+from ansible.module_utils.basic import AnsibleModule 
 
 
 def main():
     # The module accepts arguments declared here.
     argument_spec = {}
     argument_spec.update(
-        dividend=dict(type='int', required=True),
-        divisor=dict(type='int', required=True),
+        dividend=dict(type="int", required=True),
+        divisor=dict(type="int", required=True),
     )
 
     # Instantiate an object of the AnsibleModule class
@@ -77,8 +80,8 @@ def main():
     )
 
     # Assign passed options to variables
-    dividend = module.params['dividend']
-    divisor = module.params['divisor']
+    dividend = module.params["dividend"]
+    divisor = module.params["divisor"]
 
     # The work starts here.
     # All interactions with the user happen through
@@ -96,5 +99,5 @@ def main():
     module.exit_json(changed=False, quotient=quotient)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

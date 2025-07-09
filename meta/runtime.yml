@@ -1,2 +1,2 @@
 ---
-requires_ansible: '>=2.15.0'  # only tested at this level and above
+requires_ansible: ">=2.15.0" # only tested at this level and above

@@ -20,5 +20,5 @@
 - name: Assert the result
   ansible.builtin.assert:
     that:
-     - result is succeeded
-     - result.quotient == 2
+      - result is succeeded
+      - result.quotient == 2

@@ -1,15 +1,18 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# GNU General Public License v3.0+ (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
+# GNU General Public License v3.0+
+# (see COPYING or https://www.gnu.org/licenses/gpl-3.0.txt)
 
-from __future__ import (absolute_import, division, print_function)
+from __future__ import absolute_import, division, print_function
+
+
 __metaclass__ = type
 
 # What you define in this section will appear on Galaxy
 # and on docs.ansible.com as module documentation
 # if it gets included in the Ansible package.
-DOCUMENTATION = r'''
+DOCUMENTATION = r"""
 ---
 module: kernel_facts
 
@@ -23,9 +26,9 @@ version_added: '0.1.0'
 author:
   - Sandra McCann (@samccann)
 
-'''
+"""
 
-EXAMPLES = r'''
+EXAMPLES = r"""
 - name: Return OS kernel details
   register: result
   samccann.sample.kernel_facts:
@@ -34,19 +37,20 @@ EXAMPLES = r'''
 - name: Print the result
   ansible.builtin.debug:
     var: result.kernel
-'''
+"""
 
-RETURN = r'''
+RETURN = r"""
 ---
 kernel:
   description: Linux kernel for a host
   returned: success
   type: str
   sample: Linux-6.10.12-200.fc40.x86_64-x86_64-with-glibc2.39
-'''
+"""
 
-import platform
-from ansible.module_utils.basic import AnsibleModule
+import platform  # noqa: F401
+
+from ansible.module_utils.basic import AnsibleModule  # noqa: F401
 
 
 def main():
@@ -66,9 +70,9 @@ def main():
     # the AnsibleModule class of Ansible Core.
     # Get the kernel details
     kernel_facts = {
-        'kernel': None
+        "kernel": None,
     }
-    kernel_facts['kernel'] = platform.platform()
+    kernel_facts["kernel"] = platform.platform()
 
     # Exit the module.
     # Users will get the result in its JSON output after execution.
@@ -76,5 +80,5 @@ def main():
     module.exit_json(**kernel_facts_result)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
